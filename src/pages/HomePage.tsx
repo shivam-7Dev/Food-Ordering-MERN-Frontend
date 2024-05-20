@@ -1,4 +1,3 @@
-import React from "react";
 import appDownload from "../assets/appDownload.png";
 import landing from "../assets/landing.png";
 export default function HomePage() {
