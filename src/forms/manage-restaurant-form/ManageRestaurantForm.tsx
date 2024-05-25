@@ -6,6 +6,10 @@ import { Form } from "@/components/ui/form";
 import DetailsSection from "./DetailsSection";
 import { Separator } from "@/components/ui/separator";
 import CusinesSection from "./CusinesSection";
+import MenuSection from "./MenuSection";
+import ImageSection from "./ImageSection.tsx";
+import LoadingButton from "@/components/LoadingButton";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   restaurantName: z.string({
@@ -50,7 +54,7 @@ const onSubmit = (formDataJson: restaurantFormData) => {
   // todo - convert formdataJson to a new FormData object
 };
 
-const ManageRestaurantForm = ({}: Props) => {
+const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
   const form = useForm<restaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,6 +71,10 @@ const ManageRestaurantForm = ({}: Props) => {
         <DetailsSection />
         <Separator />
         <CusinesSection />
+        <Separator />
+        <MenuSection />
+        <ImageSection />
+        {isLoading ? <LoadingButton /> : <Button type="submit"> Submit</Button>}
       </form>
     </Form>
   );
