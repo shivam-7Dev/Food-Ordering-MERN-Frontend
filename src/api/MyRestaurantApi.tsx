@@ -73,46 +73,46 @@ export const useCreateMyRestaurant = () => {
   return { createRestaurant, isLoading };
 };
 
-// export const useUpdateMyRestaurant = () => {
-//   const { getAccessTokenSilently } = useAuth0();
+export const useUpdateMyRestaurant = () => {
+  const { getAccessTokenSilently } = useAuth0();
 
-//   const updateRestaurantRequest = async (
-//     restaurantFormData: FormData
-//   ): Promise<Restaurant> => {
-//     const accessToken = await getAccessTokenSilently();
+  const updateRestaurantRequest = async (
+    restaurantFormData: FormData
+  ): Promise<Restaurant> => {
+    const accessToken = await getAccessTokenSilently();
 
-//     const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
-//       method: "PUT",
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//       body: restaurantFormData,
-//     });
+    const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: restaurantFormData,
+    });
 
-//     if (!response) {
-//       throw new Error("Failed to update restaurant");
-//     }
+    if (!response) {
+      throw new Error("Failed to update restaurant");
+    }
 
-//     return response.json();
-//   };
+    return response.json();
+  };
 
-//   const {
-//     mutate: updateRestaurant,
-//     isLoading,
-//     error,
-//     isSuccess,
-//   } = useMutation(updateRestaurantRequest);
+  const {
+    mutate: updateRestaurant,
+    isLoading,
+    error,
+    isSuccess,
+  } = useMutation(updateRestaurantRequest);
 
-//   if (isSuccess) {
-//     toast.success("Restaurant Updated");
-//   }
+  if (isSuccess) {
+    toast.success("Restaurant Updated");
+  }
 
-//   if (error) {
-//     toast.error("Unable to update restaurant");
-//   }
+  if (error) {
+    toast.error("Unable to update restaurant");
+  }
 
-//   return { updateRestaurant, isLoading };
-// };
+  return { updateRestaurant, isLoading };
+};
 
 // export const useGetMyRestaurantOrders = () => {
 //   const { getAccessTokenSilently } = useAuth0();
