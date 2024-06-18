@@ -1,4 +1,4 @@
-import { Auth0Provider } from "@auth0/auth0-react";
+import { AppState, Auth0Provider } from "@auth0/auth0-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +16,8 @@ export default function Auth0ProviderWithNavigate({ children }: PropsType) {
   if (!domain || !clientID || !redirectURI || !audience) {
     throw new Error("unable to reach the Auth0");
   }
-  const onRedirectCallback = () => {
-    navigate("/auth-callback");
+  const onRedirectCallback = (appState?: AppState) => {
+    navigate(appState?.returnTo || "/auth-callback");
   };
   return (
     <Auth0Provider
